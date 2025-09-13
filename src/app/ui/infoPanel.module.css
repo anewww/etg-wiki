@@ -1,0 +1,57 @@
+.panel {
+  padding: 1.5em;
+  /* margin: 0 1em 0 2em; */
+  background-color: var(--color-bg-neutral);
+  border-radius: var(--borderRadius);
+  margin-bottom: 1em;
+  & p:nth-child(3) {
+    margin-bottom: 1.5em;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: bold;
+  /* align-items: center; */
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.quality {
+  image-rendering: pixelated;
+}
+
+.center {
+  text-align: center;
+}
+
+.damage {
+  color: red;
+}
+
+.ammo {
+  color: orange;
+}
+
+.time {
+  color: lightseagreen;
+}
+
+.type {
+  color: green;
+}
+
+.margin {
+  margin-bottom: 0.5em;
+}
+
+.default {
+  color: var(--text-muted);
+}

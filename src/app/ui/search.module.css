@@ -1,0 +1,32 @@
+.search {
+  position: relative;
+  & input{
+    display: flex;
+    font-family: var(--font-silkscreen);
+    font-weight: var(--fonWeight-medium);
+    letter-spacing: var(--font-letterSpacing);
+    box-sizing: border-box;
+    border: none;
+    border-radius: var(--borderRadius);
+    outline: none;
+    padding: 1rem;
+    padding-left: 2.75rem;
+    /* position: fixed;
+    bottom: 4em;
+    right: 4em;
+    width: 23em; */
+  }
+}
+
+.icon {
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  left: 1.75rem;
+  transform: translate(-50%, -50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  /* filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(325deg) brightness(103%) contrast(101%); */
+  filter: invert(0%) sepia(0%) saturate(30%) hue-rotate(149deg) brightness(91%) contrast(106%);
+  filter: invert(53%) sepia(5%) saturate(11%) hue-rotate(341deg) brightness(93%) contrast(88%);
+}

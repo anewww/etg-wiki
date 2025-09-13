@@ -1,0 +1,102 @@
+'use client'
+
+import Image from "next/image"
+import { GunsContext } from "@/src/contexts/gunsContext"
+import { useContext } from "react"
+import styles from "@/src/app/ui/infoPanel.module.css"
+
+export const QualityIcons = {
+  "N/A": "https://enterthegungeon.wiki.gg/images/b/bf/N_Quality_Item.png",
+  D: "https://enterthegungeon.wiki.gg/images/6/60/D_Quality_Item.png",
+  C: "https://enterthegungeon.wiki.gg/images/b/bd/C_Quality_Item.png",
+  B: "https://enterthegungeon.wiki.gg/images/f/f3/B_Quality_Item.png",
+  A: "https://enterthegungeon.wiki.gg/images/9/9c/A_Quality_Item.png",
+  S: "https://enterthegungeon.wiki.gg/images/8/8b/1S_Quality_Item.png"
+}
+
+export default function InfoPanel({ hoverId }) {
+  const {guns, loading} = useContext(GunsContext);
+  const gun = guns[hoverId];
+
+  if (loading)
+    return (
+      <Card className={styles.panel}>
+        <p>Loading...</p>
+      </Card>
+    )
+
+  return (
+    <>
+      {gun ? (
+        <>
+          <Card>
+            <DescriptionHeader gun={gun} />
+          </Card>
+
+          {/* <Card>
+            <DescriptionInfo gun={gun} />
+          </Card>  */}
+        </>
+      ) : (
+        <Card className={styles.default}>
+          <p>Hover over an icon to see more info</p>
+        </Card>
+      )}
+    </>
+  )
+}
+
+function Card({ children, className }) {
+  return (
+    <div className={`${styles.panel} ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+function DescriptionHeader({ gun }) {
+  return (
+    <>
+      <div className={styles.header}>
+        <div className={styles.icons}>
+          ID: {gun.id}
+          <Image
+            className={styles.quality}
+            src={QualityIcons[gun.quality]}
+            alt="Quality Icon A"
+            unoptimized
+            decoding="async"
+            loading="lazy"
+            width="16"
+            height="21"
+            data-file-width="14"
+            data-file-height="18">
+          </Image>
+        </div>
+        <div>
+
+        </div>
+        <p className={styles.center}>{gun.name}</p>
+        <p className={styles.center}>{gun.flavor}</p>
+      </div>
+
+      <p>{gun.notes}</p>
+      <br></br>
+      <p><span className={styles.damage}>DPS: </span>{gun.dps.value}</p>
+      <p className={styles.margin}><span className={styles.damage}>Damage: </span>{gun.damage.value}</p>
+      <p className={styles.margin}><span className={styles.ammo}>Magazine: </span>{gun.magazine.value}</p>
+      <p className={styles.margin}><span className={styles.ammo}>Ammo: </span>{gun.ammo}</p>
+      <p><span className={styles.time}>Fire rate: </span>{gun.fireRate}</p>
+      <p className={styles.margin}><span className={styles.time}>Reload time: </span>{gun.reloadTime}</p>
+      <p><span className={styles.type}>Type: </span>{gun.type}</p>
+    </>
+  )
+}
+
+function DescriptionInfo({ gun }) {
+  return (
+    <>
+
+    </>
+  )
+}
