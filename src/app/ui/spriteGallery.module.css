@@ -87,6 +87,11 @@
 .info {
   cursor: help;
   text-decoration: underline dotted;
-  text-underline-offset: 0.2em;
+  text-underline-offset: 0.3em;
+  display: inline;
   /* border-bottom: 1px red dashed; */
+}
+
+.inline {
+  display: inline;
 }

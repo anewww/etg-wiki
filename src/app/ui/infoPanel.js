@@ -2,8 +2,10 @@
 
 import Image from "next/image"
 import { GunsContext } from "@/src/contexts/gunsContext"
+import { ItemsContext } from "@/src/contexts/itemsContext"
 import { useContext } from "react"
 import styles from "@/src/app/ui/infoPanel.module.css"
+import EntityStats from "./entityStats"
 
 export const QualityIcons = {
   "N/A": "https://enterthegungeon.wiki.gg/images/b/bf/N_Quality_Item.png",
@@ -15,8 +17,10 @@ export const QualityIcons = {
 }
 
 export default function InfoPanel({ hoverId }) {
-  const {guns, loading} = useContext(GunsContext);
+  const { guns, loading } = useContext(GunsContext);
   const gun = guns[hoverId];
+
+  const items = useContext(ItemsContext);
 
   if (loading)
     return (
@@ -24,10 +28,10 @@ export default function InfoPanel({ hoverId }) {
         <p>Loading...</p>
       </Card>
     )
-
+  
   return (
     <>
-      {gun ? (
+    {gun ? (
         <>
           <Card>
             <DescriptionHeader gun={gun} />
@@ -79,16 +83,19 @@ function DescriptionHeader({ gun }) {
         <p className={styles.center}>{gun.name}</p>
         <p className={styles.center}>{gun.flavor}</p>
       </div>
+      
+      <EntityStats gun={gun}/>
 
-      <p>{gun.notes}</p>
+
+      {/* <p>{gun.notes}</p>
       <br></br>
       <p><span className={styles.damage}>DPS: </span>{gun.dps.value}</p>
       <p className={styles.margin}><span className={styles.damage}>Damage: </span>{gun.damage.value}</p>
       <p className={styles.margin}><span className={styles.ammo}>Magazine: </span>{gun.magazine.value}</p>
-      <p className={styles.margin}><span className={styles.ammo}>Ammo: </span>{gun.ammo}</p>
-      <p><span className={styles.time}>Fire rate: </span>{gun.fireRate}</p>
-      <p className={styles.margin}><span className={styles.time}>Reload time: </span>{gun.reloadTime}</p>
-      <p><span className={styles.type}>Type: </span>{gun.type}</p>
+      <p className={styles.margin}><span className={styles.ammo}>Ammo: </span>{gun.ammo.value}</p>
+      <p><span className={styles.time}>Fire rate: </span>{gun.fireRate.value}</p>
+      <p className={styles.margin}><span className={styles.time}>Reload time: </span>{gun.reloadTime.value}</p>
+      <p><span className={styles.type}>Type: </span>{gun.type}</p> */}
     </>
   )
 }

@@ -55,3 +55,14 @@
 .default {
   color: var(--text-muted);
 }
+
+.stats {
+  display: flex;
+  align-items: center;
+}
+
+.statValues {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}

@@ -9,17 +9,13 @@ import { useContext, useState} from "react";
 import { HoverContext } from "@/src/contexts/hoverContext";
 import { QualityIcons } from "./infoPanel";
 import EntityStats from "@/src/app/ui/entityStats"
-import { ItemsContext } from "@/src/contexts/itemsContext";
-import { strategies } from "@/src/lib/strategies/entityStrategies"
 
-export const scale = 3;
-const entityName = "guns";
+const scale = 3;
 
-export default function SpriteGallery() {
+export default function ItemsSpriteGallery() {
   const { query, setQuery } = useContext(SearchContext);
   const { guns, loading } = useContext(GunsContext);
-  const items = useContext(ItemsContext);
-  const { hover, setHover}  = useContext(HoverContext);
+  const { hovered, setHovered, setHoverId}  = useContext(HoverContext);
 
   const [ modal, setModal ] = useState({
     isOpen: false,
@@ -32,17 +28,13 @@ export default function SpriteGallery() {
   })
 
   function handleMouseEnter(hoverId) {
-    setHover({
-      isHovered: true,
-      hoverId: hoverId,
-    });
+    setHovered(true);
+    setHoverId(hoverId);
   }
 
   function handleMouseLeave() {
-    setHover({
-      isHovered: false,
-      hoverId: null,
-    });
+    setHovered(false);
+    setHoverId(null);
   }
 
   function openModal(gun) {
@@ -52,7 +44,7 @@ export default function SpriteGallery() {
     });
   }
 
-  if (items.loading)
+  if (loading)
     return <p>Loading...</p>
 
   return (
@@ -100,7 +92,8 @@ function Sprite({ gun, handleMouseEnter, handleMouseLeave, openModal }) {
           loading="lazy"
           data-file-width={gun.icon.width}
           data-file-height={gun.icon.height}
-        />
+        >
+        </Image>
       </button>
     </div>
   )
@@ -125,9 +118,8 @@ function Modal({ modal, setModal }) {
             className={styles.modal}
             onClick={e => e.stopPropagation()}
           >
-            {strategies[entityName](modal.gun)}
             {/* {console.log(modal.isOpen)} */}
-            {/* <div
+            <div
               className={styles.header}
             >
               <div className={styles.icons}>
@@ -168,7 +160,7 @@ function Modal({ modal, setModal }) {
             <div className={styles.description}>
               <p>{modal.gun.notes}</p>
               <br></br>
-              <EntityStats gun={modal.gun} /> */}
+              <EntityStats gun={modal.gun} />
               {/* <p>
                 <span
                   className={`${infoPanel.damage}`}  
@@ -192,7 +184,7 @@ function Modal({ modal, setModal }) {
               <p><span className={infoPanel.time}>Fire rate: </span>{modal.gun.fireRate}</p>
               <p className={infoPanel.margin}><span className={infoPanel.time}>Reload time: </span>{modal.gun.reloadTime}</p>
               <p><span className={infoPanel.type}>Type: </span>{modal.gun.type}</p> */}
-            {/* </div> */}
+            </div>
           </div>
         </div>
       )}

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, createContext, useEffect } from "react"
-import items from "@/public/data/guns.json"
+// import items from "@/public/data/guns.json"
 
 export const GunsContext = createContext(null);
 

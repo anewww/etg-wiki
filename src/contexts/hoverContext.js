@@ -9,11 +9,16 @@ import Search from "../app/ui/search";
 export const HoverContext = createContext(null);
 
 export function HoverProvider({ children }) {
-  const [hovered, setHovered] = useState(false);
-  const [hoverId, setHoverId] = useState(null);
+  const [hover, setHover] = useState({
+    isHovered: false,
+    hoverId: null,
+  });
+
+  // const [hovered, setHovered] = useState(false);
+  // const [hoverId, setHoverId] = useState(null);
   
   return (
-    <HoverContext value={{ hovered, setHovered, setHoverId }}>
+    <HoverContext value={{ hover, setHover }}>
       <div className={`${baseContainer.baseContainer}`}>
         <div className={styles.filter}>
           Choose a category: 
@@ -28,7 +33,7 @@ export function HoverProvider({ children }) {
         </div>
         <div className={styles.grid}>
           <aside className={styles.aside}>
-            <InfoPanel hoverId={hoverId} />
+            <InfoPanel hoverId={hover.hoverId} />
           </aside>
           {children}
         </div>
