@@ -6,18 +6,27 @@ import { useState, createContext, useEffect } from "react"
 export const GunsContext = createContext(null);
 
 export function GunsProvider({ children }) {
-  const [guns, setGuns] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [guns, setGuns] = useState([]);
+  const [guns, setGuns] = useState({
+    list: [],
+    loading: true,
+  });
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/data/guns.json")
       .then((res) => res.json())
-      .then(setGuns)
-      .finally(() => setLoading(false));
+      .then(json => {
+        setGuns({
+          list: json,
+          loading: false,
+        })
+      })
+      // .finally(() => console.log())
   }, []);
   
   return (
-    <GunsContext value={{guns, loading}}>
+    <GunsContext value={guns}>
       {children}
     </GunsContext>
   )

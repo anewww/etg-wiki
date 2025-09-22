@@ -6,6 +6,7 @@ import { ItemsContext } from "@/src/contexts/itemsContext"
 import { useContext } from "react"
 import styles from "@/src/app/ui/infoPanel.module.css"
 import EntityStats from "./entityStats"
+import { strategies } from "@/src/lib/strategies/entityStrategies"
 
 export const QualityIcons = {
   "N/A": "https://enterthegungeon.wiki.gg/images/b/bf/N_Quality_Item.png",
@@ -16,13 +17,16 @@ export const QualityIcons = {
   S: "https://enterthegungeon.wiki.gg/images/8/8b/1S_Quality_Item.png"
 }
 
+const entityName = "guns";
+
 export default function InfoPanel({ hoverId }) {
-  const { guns, loading } = useContext(GunsContext);
-  const gun = guns[hoverId];
+  const guns = useContext(GunsContext);
+  // console.log(guns)
+  const gun = guns.list[hoverId];
 
   const items = useContext(ItemsContext);
 
-  if (loading)
+  if (!guns || guns.loading)
     return (
       <Card className={styles.panel}>
         <p>Loading...</p>
@@ -34,7 +38,7 @@ export default function InfoPanel({ hoverId }) {
     {gun ? (
         <>
           <Card>
-            <DescriptionHeader gun={gun} />
+            <DescriptionHeader entity={gun} />
           </Card>
 
           {/* <Card>
@@ -58,10 +62,14 @@ function Card({ children, className }) {
   )
 }
 
-function DescriptionHeader({ gun }) {
+function DescriptionHeader({ entity }) {
   return (
     <>
-      <div className={styles.header}>
+       {strategies[entityName]
+        ? strategies[entityName](entity)
+          : <p>No strategy found for {entityName}</p>}
+
+      {/* <div className={styles.header}>
         <div className={styles.icons}>
           ID: {gun.id}
           <Image
@@ -84,7 +92,7 @@ function DescriptionHeader({ gun }) {
         <p className={styles.center}>{gun.flavor}</p>
       </div>
       
-      <EntityStats gun={gun}/>
+      <EntityStats gun={gun}/> */}
 
 
       {/* <p>{gun.notes}</p>

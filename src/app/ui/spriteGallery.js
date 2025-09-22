@@ -17,19 +17,15 @@ const entityName = "guns";
 
 export default function SpriteGallery() {
   const { query, setQuery } = useContext(SearchContext);
-  const { guns, loading } = useContext(GunsContext);
+  // const { guns, loading } = useContext(GunsContext);
+  const guns = useContext(GunsContext);
   const items = useContext(ItemsContext);
   const { hover, setHover}  = useContext(HoverContext);
 
   const [ modal, setModal ] = useState({
     isOpen: false,
-    gun: null,
+    entity: null,
   });
-
-  const filteredEntities = guns.filter((entity) => {
-    const name = entity.name;
-    return name.toLowerCase().includes(query.toLowerCase());
-  })
 
   function handleMouseEnter(hoverId) {
     setHover({
@@ -48,28 +44,33 @@ export default function SpriteGallery() {
   function openModal(gun) {
     setModal({
       isOpen: true,
-      gun: gun,
+      entity: gun,
     });
   }
 
-  if (items.loading)
+  // console.log(guns.list)
+
+  if (guns.loading)
     return <p>Loading...</p>
+
+  const filteredEntities = guns.list.filter((entity) => {
+    const name = entity.name;
+    return name.toLowerCase().includes(query.toLowerCase());
+  })
 
   return (
     <>
       <div className={styles.gallery}>
         {
-          // (
-          filteredEntities.map((gun) => (
+          filteredEntities.map((entity) => (
             <Sprite 
-              key={gun.id}
-              gun={gun}
+              key={entity.id}
+              entity={entity}
               handleMouseEnter={handleMouseEnter}
               handleMouseLeave={handleMouseLeave}
               openModal={openModal}
             />
           ))
-          // )
         }
       </div>
 
@@ -78,28 +79,28 @@ export default function SpriteGallery() {
   );
 }
 
-function Sprite({ gun, handleMouseEnter, handleMouseLeave, openModal }) {
+function Sprite({ entity, handleMouseEnter, handleMouseLeave, openModal }) {
   return (
     <div
       className={styles.container}
-      onMouseEnter={() => handleMouseEnter(gun.id)}
+      onMouseEnter={() => handleMouseEnter(entity.id)}
       onMouseLeave={() => handleMouseLeave()}
     >
       <button
         className={styles.button}
-        onClick={() => openModal(gun)}
+        onClick={() => openModal(entity)}
       >
         <Image
-          width={scale * gun.icon.width}
-          height={scale * gun.icon.height}
+          width={scale * entity.icon.width}
+          height={scale * entity.icon.height}
           unoptimized
           className={styles.sprite}
-          alt={gun.name}
-          src={gun.icon.src}
+          alt={entity.name}
+          src={entity.icon.src}
           decoding="async"
           loading="lazy"
-          data-file-width={gun.icon.width}
-          data-file-height={gun.icon.height}
+          data-file-width={entity.icon.width}
+          data-file-height={entity.icon.height}
         />
       </button>
     </div>
@@ -110,7 +111,7 @@ function Modal({ modal, setModal }) {
   function closeModal() {
     setModal({
       isOpen: false,
-      gun: null,
+      entity: null,
     })
   }
 
@@ -125,74 +126,9 @@ function Modal({ modal, setModal }) {
             className={styles.modal}
             onClick={e => e.stopPropagation()}
           >
-            {strategies[entityName](modal.gun)}
-            {/* {console.log(modal.isOpen)} */}
-            {/* <div
-              className={styles.header}
-            >
-              <div className={styles.icons}>
-                ID: {modal.gun.id}
-                <Image
-                  className={styles.quality}
-                  src={QualityIcons[modal.gun.quality]}
-                  alt="Quality Icon A"
-                  unoptimized
-                  decoding="async"
-                  loading="lazy"
-                  width="16"
-                  height="21"
-                  data-file-width="14"
-                  data-file-height="18">
-                </Image>
-              </div>
-              <Image
-                className={infoPanel.margin}
-                width={scale * modal.gun.icon.width}
-                height={scale * modal.gun.icon.height}
-                unoptimized
-                // className={styles.sprite}
-                alt={modal.gun.name}
-                src={modal.gun.icon.src}
-                decoding="async"
-                loading="lazy"
-                data-file-width={modal.gun.icon.width}
-                data-file-height={modal.gun.icon.height}
-                style={{ imageRendering: "pixelated" }}
-              >
-              </Image>
-              <br></br>
-              <p className={infoPanel.center}>{modal.gun.name}</p>
-              <p className={infoPanel.center}>{modal.gun.flavor}</p>
-              <br></br>
-            </div>
-            <div className={styles.description}>
-              <p>{modal.gun.notes}</p>
-              <br></br>
-              <EntityStats gun={modal.gun} /> */}
-              {/* <p>
-                <span
-                  className={`${infoPanel.damage}`}  
-                >
-                  DPS:
-                </span>
-                {" "}
-                <span 
-                  // className={(modal.gun.dps.info !== undefined) && styles.info}
-                  // title={modal.gun.dps.info !== undefined ? modal.gun.dps.info : null}
-                  {...(modal.gun.dps.info !== undefined && { className: styles.info, title: modal.gun.dps.info })}
-                >
-                  {modal.gun.dps.value.map(item => (
-                    item + " "
-                  ))}
-                </span>
-              </p>
-              <p className={infoPanel.margin}><span className={infoPanel.damage}>Damage: </span>{modal.gun.damage.value}</p>
-              <p className={styles.margin}><span className={styles.ammo}>Magazine: </span>{modal.gun.magazine.value}</p>
-              <p className={styles.margin}><span className={styles.ammo}>Ammo: </span>{modal.gun.ammo}</p>
-              <p><span className={infoPanel.time}>Fire rate: </span>{modal.gun.fireRate}</p>
-              <p className={infoPanel.margin}><span className={infoPanel.time}>Reload time: </span>{modal.gun.reloadTime}</p>
-              <p><span className={infoPanel.type}>Type: </span>{modal.gun.type}</p> */}
-            {/* </div> */}
+            {strategies[entityName]
+              ? strategies[entityName](modal.entity)
+              : <p>No strategy found for {entityName}</p>}
           </div>
         </div>
       )}

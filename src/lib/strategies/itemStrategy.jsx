@@ -5,43 +5,7 @@ import { QualityIcons } from "@/src/app/ui/infoPanel";
 import { scale } from "@/src/app/ui/spriteGallery"
 import Image from "next/image";
 
-const order = ["dps", "damage", "magazine", "ammo", "fireRate", "reloadTime"];
-const statNames = {
-  dps: {
-    text: "DPS: ",
-    cname: "damage",
-  },
-  damage: {
-    text: "Damage: ",
-    cname: "damage",
-  },
-  magazine: {
-    text: "Magazine: ",
-    cname: "ammo",
-  },
-  ammo: {
-    text: "Ammo: ",
-    cname: "ammo",
-  },
-  fireRate: {
-    text: "Fire rate: ",
-    cname: "time",
-  },
-  reloadTime: {
-    text: "Reload time: ",
-    cname: "time",
-  },
-  type: {
-    text: "Type: ",
-    cname: "type",
-  },
-}
-
-function infoProps(info) {
-  return info !== undefined && { className: `${styles.info} ${infoPanel.statValues}`, title: info };
-}
-
-export default function GunStrategy(gun) {
+export default function ItemStrategy(item) {
   return (
     <>
       <div
@@ -112,47 +76,3 @@ export default function GunStrategy(gun) {
     </>
   )
 }
-
-
-
-// function EntityStats({ gun }) {
-//   function infoProps(info) {
-//     return info !== undefined && { className: `${styles.info} ${infoPanel.statValues}`, title: info };
-//   }
-
-//   function Stats({ lines, gun }) {
-//     return (
-//       <>
-//         {lines.map((line, ind) => {
-//           const cname = statNames[line].cname;
-//           return (
-//             <p key={ind}>
-//               <span className={`${infoPanel[cname]}`}>
-//                 {statNames[line].text}
-//               </span>
-//               {gun[line].map((span, i) => {
-//                 return (
-//                   <React.Fragment key={i}>
-//                     <span
-//                       {...infoProps(span.info)}
-//                     >
-//                       {span.value}
-//                     </span>
-//                     {" "}
-//                   </React.Fragment>
-//                 )
-//               })}
-//             </p>
-//           )
-//         })}
-//       </>
-//     )
-//   }
-//   // const order = ["dps", "damage", "magazine", "ammo", "fireRate", "reloadTime"];
-
-//   return (
-//     <>
-//       <Stats lines={order} gun={gun}></Stats>
-//     </>
-//   )
-// }
