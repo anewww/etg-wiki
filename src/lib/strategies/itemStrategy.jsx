@@ -12,10 +12,10 @@ export default function ItemStrategy(item) {
         className={styles.header}
       >
         <div className={styles.icons}>
-          ID: {gun.id}
+          ID: {item.id}
           <Image
             className={styles.quality}
-            src={QualityIcons[gun.quality]}
+            src={item.quality.src}
             alt="Quality Icon A"
             unoptimized
             decoding="async"
@@ -28,50 +28,27 @@ export default function ItemStrategy(item) {
         </div>
         <Image
           className={infoPanel.margin}
-          width={scale * gun.icon.width}
-          height={scale * gun.icon.height}
+          width={scale * item.icon.width}
+          height={scale * item.icon.height}
           unoptimized
           // className={styles.sprite}
-          alt={gun.name}
-          src={gun.icon.src}
+          alt={item.name}
+          src={item.icon.src}
           decoding="async"
           loading="lazy"
-          data-file-width={gun.icon.width}
-          data-file-height={gun.icon.height}
+          data-file-width={item.icon.width}
+          data-file-height={item.icon.height}
           style={{ imageRendering: "pixelated" }}
         >
         </Image>
         <br></br>
-        <p className={infoPanel.center}>{gun.name}</p>
-        <p className={infoPanel.center}>{gun.flavor}</p>
+        <p className={infoPanel.center}>{item.name}</p>
+        <p className={infoPanel.center}>{item.flavor}</p>
         <br></br>
+        <p>{item.type}</p>
       </div>
       <div className={styles.description}>
-        <p>{gun.notes}</p>
-        <br></br>
-        {/* <EntityStats gun={modal.gun} /> */}
-        {order.map((line, ind) => {
-          const cname = statNames[line].cname;
-          return (
-            <p key={ind}>
-              <span className={`${infoPanel[cname]}`}>
-                {statNames[line].text}
-              </span>
-              {gun[line].map((span, i) => {
-                return (
-                  <React.Fragment key={i}>
-                    <span
-                      {...infoProps(span.info)}
-                    >
-                      {span.value}
-                    </span>
-                    {" "}
-                  </React.Fragment>
-                )
-              })}
-            </p>
-          )
-        })}
+        <p>{item.effect}</p>
       </div>
     </>
   )

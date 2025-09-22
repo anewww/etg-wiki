@@ -13,7 +13,7 @@ import { ItemsContext } from "@/src/contexts/itemsContext";
 import { strategies } from "@/src/lib/strategies/entityStrategies"
 
 export const scale = 3;
-const entityName = "guns";
+const entityName = "items";
 
 export default function SpriteGallery() {
   const { query, setQuery } = useContext(SearchContext);
@@ -41,10 +41,10 @@ export default function SpriteGallery() {
     });
   }
 
-  function openModal(gun) {
+  function openModal(entity) {
     setModal({
       isOpen: true,
-      entity: gun,
+      entity: entity,
     });
   }
 
@@ -53,7 +53,7 @@ export default function SpriteGallery() {
   if (guns.loading)
     return <p>Loading...</p>
 
-  const filteredEntities = guns.list.filter((entity) => {
+  const filteredEntities = items.list.filter((entity) => {
     const name = entity.name;
     return name.toLowerCase().includes(query.toLowerCase());
   })
