@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext } from 'react'
-import styles from './search.module.css'
+import styles from '@/src/ui/search.module.css'
 import { SearchContext } from '@/src/contexts/searchContext'
 
 export default function Search({ className }) {

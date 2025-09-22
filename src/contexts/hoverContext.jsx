@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, createContext } from "react"
-import InfoPanel from "../app/ui/infoPanel";
-import styles from "@/src/app/page.module.css";
+import InfoPanel from "@/src/ui/infoPanel"
+import styles from "@/src/app/page.module.css"
 import baseContainer from "@/src/app/baseContainer.module.css"
-import Search from "../app/ui/search";
+import Search from "@/src/ui/search"
 
 export const HoverContext = createContext(null);
 

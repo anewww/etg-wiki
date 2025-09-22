@@ -1,11 +1,11 @@
 'use client'
 
-import Image from "next/image"
+// import Image from "next/image"
 import { GunsContext } from "@/src/contexts/gunsContext"
 import { ItemsContext } from "@/src/contexts/itemsContext"
 import { useContext } from "react"
-import styles from "@/src/app/ui/infoPanel.module.css"
-import EntityStats from "./entityStats"
+import styles from "@/src/ui/infoPanel.module.css"
+// import EntityStats from "./entityStats"
 import { strategies } from "@/src/lib/strategies/entityStrategies"
 
 export const QualityIcons = {

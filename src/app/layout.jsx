@@ -1,10 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import { Pixelify_Sans } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
+// import { Pixelify_Sans } from "next/font/google";
 import { Silkscreen } from "next/font/google";
-import styles from "@/src/app/header.module.css"
+import styles from "@/src/app/layout.module.css"
 import baseContainer from "@/src/app/baseContainer.module.css"
-import Search from "./ui/search";
-import { SearchProvider } from "../contexts/searchContext";
+// import Search from "../ui/search";
+import { SearchProvider } from "@/src/contexts/searchContext";
 import "./globals.css";
 
 const silkscreen = Silkscreen({

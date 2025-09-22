@@ -1,5 +1,5 @@
-import styles from "@/src/app/ui/spriteGallery.module.css"
-import infoPanel from "@/src/app/ui/infoPanel.module.css"
+import styles from "@/src/ui/spriteGallery.module.css"
+import infoPanel from "@/src/ui/infoPanel.module.css"
 import { Fragment } from "react"
 
 export default function EntityStats({ gun }) {

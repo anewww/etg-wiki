@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from "react";
-import Search from "./search";
-import { Hanken_Grotesk } from "next/font/google";
+import Search from "@/src/ui/search";
+// import { Hanken_Grotesk } from "next/font/google";
 
 export default function Items() {
   const [query, setQuery] = useState("");

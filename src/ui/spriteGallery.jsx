@@ -1,14 +1,14 @@
 'use client'
 
 import Image from "next/image";
-import styles from "./spriteGallery.module.css";
-import infoPanel from "./infoPanel.module.css"
+import styles from "@/src/ui/spriteGallery.module.css";
+// import infoPanel from "./infoPanel.module.css"
 import { SearchContext } from "@/src/contexts/searchContext";
 import { GunsContext } from "@/src/contexts/gunsContext";
 import { useContext, useState} from "react";
 import { HoverContext } from "@/src/contexts/hoverContext";
-import { QualityIcons } from "./infoPanel";
-import EntityStats from "@/src/app/ui/entityStats"
+// import { QualityIcons } from "./infoPanel";
+// import EntityStats from "@/src/ui/entityStats"
 import { ItemsContext } from "@/src/contexts/itemsContext";
 import { strategies } from "@/src/lib/strategies/entityStrategies"
 

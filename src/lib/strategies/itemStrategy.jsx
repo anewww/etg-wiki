@@ -1,8 +1,8 @@
-import styles from "@/src/app/ui/spriteGallery.module.css"
-import infoPanel from "@/src/app/ui/infoPanel.module.css"
+import styles from "@/src/ui/spriteGallery.module.css"
+import infoPanel from "@/src/ui/infoPanel.module.css"
 import React from "react"
-import { QualityIcons } from "@/src/app/ui/infoPanel";
-import { scale } from "@/src/app/ui/spriteGallery"
+import { QualityIcons } from "@/src/ui/infoPanel";
+import { scale } from "@/src/ui/spriteGallery"
 import Image from "next/image";
 
 export default function ItemStrategy(item) {
