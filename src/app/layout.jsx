@@ -6,6 +6,7 @@ import baseContainer from "@/src/app/baseContainer.module.css"
 // import Search from "../ui/search";
 import { SearchProvider } from "@/src/contexts/searchContext";
 import "./globals.css";
+import { CategoriesProvider } from "@/src/contexts/categoriesContext"
 
 const silkscreen = Silkscreen({
   variable: "--font-silkscreen",
@@ -22,24 +23,26 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${silkscreen.variable}`}>
-        <SearchProvider>
-          <div className={baseContainer.baseContainer}>
-            <header className={`${styles.header}`}>
-              {/* <span className={`${styles.left} ${styles.circle}`} /> */}
-              <img src="/icons/logo-etg.svg" className={`${styles.logo} ${styles.left}`}></img>
-              <nav className={`${styles.nav} ${styles.center}`}>
-                <ul>
-                  <li><a href="#">FAQ</a></li>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-              </nav>
-              {/* <Search className={styles.right} /> */}
-              <div className={`${styles.right}`}>Settings</div>
-            </header>
-          </div>
-          {children}
-        </SearchProvider>
+        <CategoriesProvider>
+          <SearchProvider>
+            <div className={baseContainer.baseContainer}>
+              <header className={`${styles.header}`}>
+                {/* <span className={`${styles.left} ${styles.circle}`} /> */}
+                <img src="/icons/logo-etg.svg" className={`${styles.logo} ${styles.left}`}></img>
+                <nav className={`${styles.nav} ${styles.center}`}>
+                  <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                  </ul>
+                </nav>
+                {/* <Search className={styles.right} /> */}
+                <div className={`${styles.right}`}>Settings</div>
+              </header>
+            </div>
+            {children}
+          </SearchProvider>
+        </CategoriesProvider>
       </body>
     </html>
   );

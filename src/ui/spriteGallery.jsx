@@ -11,6 +11,7 @@ import { HoverContext } from "@/src/contexts/hoverContext";
 // import EntityStats from "@/src/ui/entityStats"
 import { ItemsContext } from "@/src/contexts/itemsContext";
 import { strategies } from "@/src/lib/strategies/entityStrategies"
+import { CategoriesContext } from "@/src/contexts/categoriesContext";
 
 export const scale = 3;
 const entityName = "items";
@@ -20,7 +21,8 @@ export default function SpriteGallery() {
   // const { guns, loading } = useContext(GunsContext);
   const guns = useContext(GunsContext);
   const items = useContext(ItemsContext);
-  const { hover, setHover}  = useContext(HoverContext);
+  const { hover, setHover} = useContext(HoverContext);
+  const { categories, setCategories } = useContext(CategoriesContext);
 
   const [ modal, setModal ] = useState({
     isOpen: false,
@@ -50,29 +52,36 @@ export default function SpriteGallery() {
 
   // console.log(guns.list)
 
-  if (guns.loading)
+  if (items.list.loading)
     return <p>Loading...</p>
+
+  // console.log(items.list)
 
   const filteredEntities = items.list.filter((entity) => {
     const name = entity.name;
     return name.toLowerCase().includes(query.toLowerCase());
   })
 
+  const entityKeys = Object.keys(strategies);
+
   return (
     <>
-      <div className={styles.gallery}>
-        {
-          filteredEntities.map((entity) => (
-            <Sprite 
-              key={entity.id}
-              entity={entity}
-              handleMouseEnter={handleMouseEnter}
-              handleMouseLeave={handleMouseLeave}
-              openModal={openModal}
-            />
-          ))
-        }
-      </div>
+      {entityKeys.map((key, ind) => {
+        return categories[key] && (<div key={ind} className={styles.gallery}>
+          {
+            filteredEntities.map((entity) => (
+              <Sprite
+                key={entity.id}
+                entity={entity}
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                openModal={openModal}
+              />
+            ))
+          }
+        </div>)
+      })}
+      {/* {categories.items } */}
 
       <Modal {...{ modal, setModal }} />
     </>

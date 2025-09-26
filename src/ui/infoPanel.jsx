@@ -3,6 +3,7 @@
 // import Image from "next/image"
 import { GunsContext } from "@/src/contexts/gunsContext"
 import { ItemsContext } from "@/src/contexts/itemsContext"
+import { HoverContext } from "@/src/contexts/hoverContext"
 import { useContext } from "react"
 import styles from "@/src/ui/infoPanel.module.css"
 // import EntityStats from "./entityStats"
@@ -17,16 +18,22 @@ export const QualityIcons = {
   S: "https://enterthegungeon.wiki.gg/images/8/8b/1S_Quality_Item.png"
 }
 
-const entityName = "guns";
+const entityName = "items";
 
-export default function InfoPanel({ hoverId }) {
+export default function InfoPanel() {
+  const {hover, setHover} = useContext(HoverContext);
   const guns = useContext(GunsContext);
   // console.log(guns)
-  const gun = guns.list[hoverId];
+  const gun = guns.list[hover.hoverId];
 
   const items = useContext(ItemsContext);
+  // console.log("items: " + items);
+  const entities = items.list;
+  console.log(hover.hoverId);
+  const entity = items.list[hover.hoverId];
+  // console.log("item: " + entity);
 
-  if (!guns || guns.loading)
+  if (!entity || items.loading)
     return (
       <Card className={styles.panel}>
         <p>Loading...</p>
@@ -35,10 +42,10 @@ export default function InfoPanel({ hoverId }) {
   
   return (
     <>
-    {gun ? (
+      {entity ? (
         <>
           <Card>
-            <DescriptionHeader entity={gun} />
+            <DescriptionHeader entity={entity} />
           </Card>
 
           {/* <Card>
