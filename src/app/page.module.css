@@ -1,6 +1,27 @@
+.grid {
+  display: grid;
+  grid-template-areas:
+    "filter filter"
+    "aside main";
+  grid-template-columns: 1fr 4fr;
+  /* grid-template-rows: auto 1fr; */
+  grid-template-rows: auto 1fr;
+  gap: 0 2rem;
+  /* gap: 2rem; */
+}
+
+.asideOuter {
+  display: flex;
+  flex-direction: column;
+}
+
 .aside {
-  grid-area: aside;
+  grid-area: aside; 
   align-self: start;
+  /* height: fit-content; */
+  position: sticky;
+  top: var(--filter-height);
+  /* top: 0; */
 }
 
 .main {
@@ -8,14 +29,18 @@
 }
 
 .filter {
-  height: 100%;
-  width: 100%;
+  grid-column: 1 / -1;
+  position: sticky;
+  top: 0rem;
+  grid-area: filter; 
+  align-self: start;
   display: flex;
   justify-content: start;
   align-items: center;
   background-color: var(--color-bg-neutral);
   border-radius: var(--borderRadius);
   margin: 2rem 0;
+  /* z-index: 99999; */
 }
 
 .filter ul {
@@ -27,26 +52,33 @@
   gap: 1.5em;
   margin: 2rem 0;
   margin-left: 2rem;
+}
 
-  & li {
-    background-color: var(--color-bg-neutral);
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--borderColor-disabled);
-    color: var(--text-muted);
-    border-radius: var(--borderRadius);
+.filterButton {
+  all: unset;
+  background-color: var(--color-bg-neutral);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--borderColor-disabled);
+  color: var(--text-muted);
+  border-radius: var(--borderRadius);
 
-    &:first-child {
+  /* &:first-child {
         border-color: var(--borderColor);
         background-color: var(--color-bg-neutral);
         color: var(--text);
-      }
+      } */
 
-    &:hover {
-      /* background-color: var(--color-bg-dark-hovered); */
-      border-color: var(--borderColor);
-      color: var(--text);
-    }
+  &:hover {
+    /* background-color: var(--color-bg-dark-hovered); */
+    border-color: var(--borderColor);
+    color: var(--text);
   }
+}
+
+.filterButtonActive {
+  border-color: var(--borderColor);
+  background-color: var(--color-bg-neutral);
+  color: var(--text);
 }
 
 .itemsCard {
@@ -55,6 +87,7 @@
   border-radius: var(--borderRadius);
   /* margin: 0 2em 2em 1em; */
   align-self: start;
+  margin-bottom: 2rem;
 
   & span.header {
     font-size: var(--fontSize-jumbo);
@@ -69,16 +102,6 @@
       background-color: white;
     } 
   }
-}
-
-.grid {
-  display: grid;
-  grid-template-areas:
-    "header header"
-    "aside main";
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: auto 1fr;
-  gap: 0 2rem;
 }
 
 /* .test {

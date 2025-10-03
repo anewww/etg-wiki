@@ -18,7 +18,8 @@ export function GunsProvider({ children }) {
       .then((res) => res.json())
       .then(json => {
         setGuns({
-          list: json,
+          object: json,
+          list: json.guns,
           loading: false,
         })
       })

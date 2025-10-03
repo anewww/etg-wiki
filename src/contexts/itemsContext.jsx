@@ -17,6 +17,7 @@ export function ItemsProvider({ children }) {
       .then((res) => res.json())
       .then((json) => {
         setItems({
+          object: json,
           list: json.items,
           loading: false,
         })

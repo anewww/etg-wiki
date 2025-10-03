@@ -8,6 +8,7 @@ import { useContext } from "react"
 import styles from "@/src/ui/infoPanel.module.css"
 // import EntityStats from "./entityStats"
 import { strategies } from "@/src/lib/strategies/entityStrategies"
+import { useStrategies } from "@/src/lib/strategies/entityStrategies";
 
 export const QualityIcons = {
   "N/A": "https://enterthegungeon.wiki.gg/images/b/bf/N_Quality_Item.png",
@@ -27,13 +28,18 @@ export default function InfoPanel() {
   const gun = guns.list[hover.hoverId];
 
   const items = useContext(ItemsContext);
+
+  const strategies = useStrategies();
+
   // console.log("items: " + items);
   const entities = items.list;
-  console.log(hover.hoverId);
-  const entity = items.list[hover.hoverId];
+  // console.log(hover.hoverId);
+  const entityType = hover.type;
+  console.log(strategies[entityType]?.data.list[hover.hoverId])
+  const entity = strategies[entityType]?.data.list[hover.hoverId];
   // console.log("item: " + entity);
 
-  if (!entity || items.loading)
+  if (items.loading)
     return (
       <Card className={styles.panel}>
         <p>Loading...</p>
@@ -45,7 +51,7 @@ export default function InfoPanel() {
       {entity ? (
         <>
           <Card>
-            <DescriptionHeader entity={entity} />
+            <DescriptionHeader entity={entity} strategies={strategies} />
           </Card>
 
           {/* <Card>
@@ -69,11 +75,11 @@ function Card({ children, className }) {
   )
 }
 
-function DescriptionHeader({ entity }) {
+function DescriptionHeader({ entity, strategies }) {
   return (
     <>
        {strategies[entityName]
-        ? strategies[entityName](entity)
+        ? strategies[entityName].render(entity)
           : <p>No strategy found for {entityName}</p>}
 
       {/* <div className={styles.header}>

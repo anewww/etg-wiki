@@ -6,7 +6,7 @@ export const CategoriesContext = createContext(null);
 
 export function CategoriesProvider({ children }) {
   const [categories, setCategories] = useState({
-    guns: false,
+    guns: true,
     items: false,
   });
 

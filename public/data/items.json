@@ -1,4 +1,5 @@
 {
+  "type": "items",
   "items": [
     {
       "id": 0,
@@ -3966,8 +3967,8 @@
       "flavor": "This You Can Trust",
       "icon": {
         "src": "https://enterthegungeon.wiki.gg/images/Riddle_of_Lead.png",
-        "width": "12",
-        "height": "18"
+        "width": 12,
+        "height": 18
       },
       "quality": {
         "src": "https://enterthegungeon.wiki.gg/images/1S_Quality_Item.png"
@@ -4072,6 +4073,6 @@
     "revid": null,
     "url": "https://enterthegungeon.wiki.gg/Items",
     "license": "CC BY-SA 4.0 (see wiki footer)",
-    "accessedAt": "2025-09-21"
+    "accessedAt": "2025-10-01"
   }
 }

@@ -2,16 +2,18 @@
 
 import Image from "next/image";
 import styles from "@/src/ui/spriteGallery.module.css";
+import stylesPage from "@/src/app/page.module.css"
 // import infoPanel from "./infoPanel.module.css"
 import { SearchContext } from "@/src/contexts/searchContext";
 import { GunsContext } from "@/src/contexts/gunsContext";
-import { useContext, useState} from "react";
+import { useContext, useMemo, useState} from "react";
 import { HoverContext } from "@/src/contexts/hoverContext";
 // import { QualityIcons } from "./infoPanel";
 // import EntityStats from "@/src/ui/entityStats"
 import { ItemsContext } from "@/src/contexts/itemsContext";
-import { strategies } from "@/src/lib/strategies/entityStrategies"
+// import { strategies } from "@/src/lib/strategies/entityStrategies"
 import { CategoriesContext } from "@/src/contexts/categoriesContext";
+import { useStrategies } from "@/src/lib/strategies/entityStrategies";
 
 export const scale = 3;
 const entityName = "items";
@@ -19,20 +21,23 @@ const entityName = "items";
 export default function SpriteGallery() {
   const { query, setQuery } = useContext(SearchContext);
   // const { guns, loading } = useContext(GunsContext);
-  const guns = useContext(GunsContext);
-  const items = useContext(ItemsContext);
   const { hover, setHover} = useContext(HoverContext);
   const { categories, setCategories } = useContext(CategoriesContext);
+  const guns = useContext(GunsContext);
+  const items = useContext(ItemsContext);
+
+  const strategies = useStrategies();
 
   const [ modal, setModal ] = useState({
     isOpen: false,
     entity: null,
   });
 
-  function handleMouseEnter(hoverId) {
+  function handleMouseEnter(hoverId, type) {
     setHover({
       isHovered: true,
       hoverId: hoverId,
+      type: type,
     });
   }
 
@@ -40,6 +45,7 @@ export default function SpriteGallery() {
     setHover({
       isHovered: false,
       hoverId: null,
+      type: null,
     });
   }
 
@@ -52,7 +58,7 @@ export default function SpriteGallery() {
 
   // console.log(guns.list)
 
-  if (items.list.loading)
+  if (strategies.loading)
     return <p>Loading...</p>
 
   // console.log(items.list)
@@ -66,33 +72,38 @@ export default function SpriteGallery() {
 
   return (
     <>
-      {entityKeys.map((key, ind) => {
-        return categories[key] && (<div key={ind} className={styles.gallery}>
-          {
-            filteredEntities.map((entity) => (
-              <Sprite
-                key={entity.id}
-                entity={entity}
-                handleMouseEnter={handleMouseEnter}
-                handleMouseLeave={handleMouseLeave}
-                openModal={openModal}
-              />
-            ))
-          }
-        </div>)
+      {entityKeys.map(key => {
+        return categories[key] && (
+          <div className={stylesPage.itemsCard} key={key}>
+            <span className={stylesPage.header}>{key}<hr></hr></span>
+            <div className={styles.gallery}>
+              {
+                strategies[key].data.list.map((entity) => (
+                  <Sprite
+                    key={entity.id}
+                    entity={entity}
+                    type={strategies[key].data.object.type}
+                    handleMouseEnter={handleMouseEnter}
+                    handleMouseLeave={handleMouseLeave}
+                    openModal={openModal}
+                  />
+                ))
+              }
+            </div>
+          </div>)
       })}
       {/* {categories.items } */}
 
-      <Modal {...{ modal, setModal }} />
+      <Modal {...{ strategies, modal, setModal }} />
     </>
   );
 }
 
-function Sprite({ entity, handleMouseEnter, handleMouseLeave, openModal }) {
+function Sprite({ entity, type, handleMouseEnter, handleMouseLeave, openModal }) {
   return (
     <div
       className={styles.container}
-      onMouseEnter={() => handleMouseEnter(entity.id)}
+      onMouseEnter={() => handleMouseEnter(entity.id, type)}
       onMouseLeave={() => handleMouseLeave()}
     >
       <button
@@ -116,7 +127,7 @@ function Sprite({ entity, handleMouseEnter, handleMouseLeave, openModal }) {
   )
 }
 
-function Modal({ modal, setModal }) {
+function Modal({ strategies, modal, setModal }) {
   function closeModal() {
     setModal({
       isOpen: false,
@@ -136,7 +147,7 @@ function Modal({ modal, setModal }) {
             onClick={e => e.stopPropagation()}
           >
             {strategies[entityName]
-              ? strategies[entityName](modal.entity)
+              ? strategies[entityName].render(modal.entity)
               : <p>No strategy found for {entityName}</p>}
           </div>
         </div>
