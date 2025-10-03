@@ -63,10 +63,10 @@ export default function SpriteGallery() {
 
   // console.log(items.list)
 
-  const filteredEntities = items.list.filter((entity) => {
+  const filteredEntities = (entity) => {
     const name = entity.name;
     return name.toLowerCase().includes(query.toLowerCase());
-  })
+  }
 
   const entityKeys = Object.keys(strategies);
 
@@ -78,7 +78,7 @@ export default function SpriteGallery() {
             <span className={stylesPage.header}>{key}<hr></hr></span>
             <div className={styles.gallery}>
               {
-                strategies[key].data.list.map((entity) => (
+                strategies[key].data.list.filter(filteredEntities).map((entity) => (
                   <Sprite
                     key={entity.id}
                     entity={entity}

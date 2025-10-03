@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
               <header className={`${styles.header}`}>
                 {/* <span className={`${styles.left} ${styles.circle}`} /> */}
                 <img src="/icons/logo-etg.svg" className={`${styles.logo} ${styles.left}`}></img>
-                <nav className={`${styles.nav} ${styles.center}`}>
+                <nav className={`${styles.nav} ${styles.right}`}>
                   <ul>
                     <li><a href="#">FAQ</a></li>
                     <li><a href="#">About</a></li>
@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
                   </ul>
                 </nav>
                 {/* <Search className={styles.right} /> */}
-                <div className={`${styles.right}`}>Settings</div>
+                {/* <div className={`${styles.right}`}>Settings</div> */}
               </header>
             </div>
             {children}

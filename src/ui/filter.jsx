@@ -21,7 +21,7 @@ export default function Filter() {
       className={stylesPage.filter}
       ref={filterRef}
     >
-      Choose a category:
+      <span>Choose a category:</span>
       <ul>
         <CategoriesButton />
         {/* <li><a href="#">Guns</a></li>

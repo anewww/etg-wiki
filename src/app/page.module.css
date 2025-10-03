@@ -40,6 +40,7 @@
   background-color: var(--color-bg-neutral);
   border-radius: var(--borderRadius);
   margin: 2rem 0;
+  padding: 0 2rem;
   /* z-index: 99999; */
 }
 
@@ -56,6 +57,7 @@
 
 .filterButton {
   all: unset;
+  cursor: pointer;
   background-color: var(--color-bg-neutral);
   padding: 0.75rem 1.5rem;
   border: 1px solid var(--borderColor-disabled);
@@ -71,7 +73,7 @@
   &:hover {
     /* background-color: var(--color-bg-dark-hovered); */
     border-color: var(--borderColor);
-    color: var(--text);
+    /* color: var(--text); */
   }
 }
 
@@ -101,6 +103,27 @@
       height: 0.1em;
       background-color: white;
     } 
+  }
+}
+
+@media (max-width: 1024px) {
+  .filter {
+    flex-direction: column;
+    padding-bottom: 2rem;
+
+    & ul {
+      justify-content: center;
+    }
+
+    & span {
+      display: none;
+    }
+  }
+
+  .grid {
+    grid-template-areas: 
+      "filter filter"
+      "main main";
   }
 }
 
