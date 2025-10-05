@@ -12,6 +12,7 @@
   --color-bg-neutral: hsl(var(--hue) 0% 15%);
   --color-bg-light: hsl(var(--hue) 0% 25%);
   --color-accent: hsl(var(--hue), 100%, 50%);
+  --color-accent-hovered: hsl(48, 100%, 75%);
 
   --text: hsl(0 0% 95%);
   --text-muted: hsl(0 0% 60%);

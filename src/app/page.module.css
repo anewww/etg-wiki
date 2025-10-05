@@ -65,12 +65,7 @@
   border: 1px solid var(--borderColor-disabled);
   color: var(--text-muted);
   border-radius: var(--borderRadius);
-
-  /* &:first-child {
-        border-color: var(--borderColor);
-        background-color: var(--color-bg-neutral);
-        color: var(--text);
-      } */
+  transition: all ease 0.25s;
 
   &:hover {
     /* background-color: var(--color-bg-dark-hovered); */

@@ -8,6 +8,7 @@ import { SearchProvider } from "@/src/contexts/searchContext";
 import "./globals.css";
 import { CategoriesProvider } from "@/src/contexts/categoriesContext"
 import Link from "next/link";
+import CookieBanner from "@/src/ui/cookieBanner"
 
 const silkscreen = Silkscreen({
   variable: "--font-silkscreen",
@@ -73,6 +74,8 @@ export default function RootLayout({ children }) {
             </div>
           </SearchProvider>
         </CategoriesProvider>
+
+        <CookieBanner></CookieBanner>
       </body>
     </html>
   );
