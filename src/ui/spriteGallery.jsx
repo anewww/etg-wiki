@@ -16,7 +16,7 @@ import { CategoriesContext } from "@/src/contexts/categoriesContext";
 import { useStrategies } from "@/src/lib/strategies/entityStrategies";
 
 export const scale = 3;
-const entityName = "items";
+const entityName = "guns";
 
 export default function SpriteGallery() {
   const { query, setQuery } = useContext(SearchContext);
@@ -42,11 +42,12 @@ export default function SpriteGallery() {
   }
 
   function handleMouseLeave() {
-    setHover({
+    setHover(prev => ({
+      ...prev,
       isHovered: false,
       hoverId: null,
-      type: null,
-    });
+      // type: null,
+    }));
   }
 
   function openModal(entity) {
@@ -94,7 +95,7 @@ export default function SpriteGallery() {
       })}
       {/* {categories.items } */}
 
-      <Modal {...{ strategies, modal, setModal }} />
+      <Modal {...{ hover, strategies, modal, setModal }} />
     </>
   );
 }
@@ -127,13 +128,15 @@ function Sprite({ entity, type, handleMouseEnter, handleMouseLeave, openModal })
   )
 }
 
-function Modal({ strategies, modal, setModal }) {
+function Modal({ hover, strategies, modal, setModal }) {
   function closeModal() {
     setModal({
       isOpen: false,
       entity: null,
     })
   }
+
+  const entityType = hover.type;
 
   return (
     <>
@@ -146,9 +149,9 @@ function Modal({ strategies, modal, setModal }) {
             className={styles.modal}
             onClick={e => e.stopPropagation()}
           >
-            {strategies[entityName]
-              ? strategies[entityName].render(modal.entity)
-              : <p>No strategy found for {entityName}</p>}
+            {strategies[entityType]
+              ? strategies[entityType].render(modal.entity)
+              : <p>No strategy found for {entityType}</p>}
           </div>
         </div>
       )}

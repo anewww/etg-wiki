@@ -1,14 +1,16 @@
 import styles from "@/src/ui/spriteGallery.module.css"
+import stylesPanel from "@/src/ui/infoPanel.module.css"
 import infoPanel from "@/src/ui/infoPanel.module.css"
 import React from "react"
 import { QualityIcons } from "@/src/ui/infoPanel";
 import { scale } from "@/src/ui/spriteGallery"
 import Image from "next/image";
+import clsx from "clsx";
 
 export default function ItemStrategy(item) {
   return (
     <>
-      {/* <div
+      <div
         className={styles.header}
       >
         <div className={styles.icons}>
@@ -45,11 +47,18 @@ export default function ItemStrategy(item) {
         <p className={infoPanel.center}>{item.name}</p>
         <p className={infoPanel.center}>{item.flavor}</p>
         <br></br>
-        <p>{item.type}</p>
+        <p 
+          className={clsx({ 
+            [stylesPanel.active]: item.type.toLowerCase() === "active",
+            [stylesPanel.passive]: item.type.toLowerCase() === "passive",
+          })}
+        >
+          {item.type}
+        </p>
       </div>
       <div className={styles.description}>
         <p>{item.effect}</p>
-      </div> */}
+      </div>
     </>
   )
 }

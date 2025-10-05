@@ -19,13 +19,14 @@ export const QualityIcons = {
   S: "https://enterthegungeon.wiki.gg/images/8/8b/1S_Quality_Item.png"
 }
 
-const entityName = "items";
 
 export default function InfoPanel() {
   const {hover, setHover} = useContext(HoverContext);
   const guns = useContext(GunsContext);
   // console.log(guns)
   const gun = guns.list[hover.hoverId];
+  // const entityName = "items";
+  const entityType = hover.type;
 
   const items = useContext(ItemsContext);
 
@@ -34,8 +35,7 @@ export default function InfoPanel() {
   // console.log("items: " + items);
   const entities = items.list;
   // console.log(hover.hoverId);
-  const entityType = hover.type;
-  console.log(strategies[entityType]?.data.list[hover.hoverId])
+  // console.log(strategies[entityType]?.data.list[hover.hoverId])
   const entity = strategies[entityType]?.data.list[hover.hoverId];
   // console.log("item: " + entity);
 
@@ -51,7 +51,7 @@ export default function InfoPanel() {
       {entity ? (
         <>
           <Card>
-            <DescriptionHeader entity={entity} strategies={strategies} />
+            <DescriptionHeader entity={entity} type={entityType} strategies={strategies} />
           </Card>
 
           {/* <Card>
@@ -75,11 +75,11 @@ function Card({ children, className }) {
   )
 }
 
-function DescriptionHeader({ entity, strategies }) {
+function DescriptionHeader({ entity, type, strategies }) {
   return (
     <>
-       {strategies[entityName]
-          ? strategies[entityName].render(entity)
+      {strategies[type]
+        ? strategies[type].render(entity)
           : <p>No strategy found for {entityName}</p>}
 
       {/* <div className={styles.header}>

@@ -16,6 +16,7 @@
 }
 
 .aside {
+  width: 100%;
   grid-area: aside; 
   align-self: start;
   /* height: fit-content; */

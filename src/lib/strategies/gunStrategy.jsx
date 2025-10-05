@@ -44,15 +44,14 @@ function infoProps(info) {
 export default function GunStrategy(gun) {
   return (
     <>
-      {/* <div
+      <div
         className={styles.header}
       >
-        123
         <div className={styles.icons}>
           ID: {gun.id}
           <Image
             className={styles.quality}
-            src={QualityIcons[gun.quality]}
+            src={gun.quality.src}
             alt="Quality Icon A"
             unoptimized
             decoding="async"
@@ -107,7 +106,7 @@ export default function GunStrategy(gun) {
             </p>
           )
         })}
-      </div> */}
+      </div>
     </>
   )
 }
