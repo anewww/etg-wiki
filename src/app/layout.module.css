@@ -85,7 +85,12 @@
 
   & ul {
     display: flex;
+    flex-wrap: wrap;
     gap: 3rem;
+
+    @media (max-width: 768px) {
+      gap: 1.5rem;
+    }
   }
 }
 
@@ -97,6 +102,7 @@
   padding: 3rem 0;
   font-size: var(--fontSize-small);
   gap: 0.5rem;
+  text-align: center;
 
   & a {
     text-decoration: underline;
