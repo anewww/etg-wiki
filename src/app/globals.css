@@ -1,6 +1,7 @@
 :root {
   /* Widths, heights, mar/pad etc. */
   --container-padding: 0 3rem;
+  --lg-container-padding: 0 1.5rem;
 
   /* Colors */
   --saturation: 5%;

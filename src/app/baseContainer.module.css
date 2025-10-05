@@ -1,3 +1,9 @@
 .baseContainer {
   padding: var(--container-padding);
 }
+
+@media (max-width: 1024px) {
+  .baseContainer {
+    padding: var(--lg-container-padding);
+  }
+}

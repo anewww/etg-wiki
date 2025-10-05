@@ -60,6 +60,49 @@
   justify-self: end;
 }
 
+/* .footer {
+
+  & hr {
+    margin: 0 auto;
+  }
+} */
+
+.hrBig {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.hrSmall {
+  width: 5%;
+  margin: 0 auto;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0;
+
+  & ul {
+    display: flex;
+    gap: 3rem;
+  }
+}
+
+.disclaimer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 3rem 0;
+  font-size: var(--fontSize-small);
+  gap: 0.5rem;
+
+  & a {
+    text-decoration: underline;
+  }
+}
+
 /* .nav {
   height: 100%;
   display: flex;

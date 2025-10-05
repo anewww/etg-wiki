@@ -7,6 +7,7 @@ import baseContainer from "@/src/app/baseContainer.module.css"
 import { SearchProvider } from "@/src/contexts/searchContext";
 import "./globals.css";
 import { CategoriesProvider } from "@/src/contexts/categoriesContext"
+import Link from "next/link";
 
 const silkscreen = Silkscreen({
   variable: "--font-silkscreen",
@@ -20,6 +21,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const year = new Date().getFullYear();
+
   return (
     <html lang="en">
       <body className={`${silkscreen.variable}`}>
@@ -28,12 +31,14 @@ export default function RootLayout({ children }) {
             <div className={baseContainer.baseContainer}>
               <header className={`${styles.header}`}>
                 {/* <span className={`${styles.left} ${styles.circle}`} /> */}
-                <img src="/icons/logo-etg.svg" className={`${styles.logo} ${styles.left}`}></img>
+                <Link href="/">
+                  <img src="/icons/logo-etg.svg" className={`${styles.logo} ${styles.left}`}></img>
+                </Link>
                 <nav className={`${styles.nav} ${styles.right}`}>
                   <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><Link href="/faq">FAQ</Link></li>
+                    <li><Link href="/about">About</Link></li>
+                    <li><Link href="/contact">Contact</Link></li>
                   </ul>
                 </nav>
                 {/* <Search className={styles.right} /> */}
@@ -41,6 +46,31 @@ export default function RootLayout({ children }) {
               </header>
             </div>
             {children}
+            <div className={baseContainer.baseContainer}>
+              <div className={`${styles.footer}`}>
+                <hr className={`${styles.hrBig}`}></hr>
+                <div className={`${styles.nav} ${styles.links}`}>
+                  <ul>
+                    <li><Link href="/">Home</Link></li>
+                    <li><Link href="/faq">FAQ</Link></li>
+                    <li><Link href="/about">About</Link></li>
+                    <li><Link href="/contact">Contact</Link></li>
+                  </ul>
+                </div>
+                <hr className={`${styles.hrSmall}`}></hr>
+                <div className={`${styles.disclaimer}`}>
+                  <span>
+                    This project is a fan-made, non-commercial website and is not an official product of Dodge Roll or Devolver Digital.
+                  </span>
+                  <span>
+                    All data and images are sourced from the <a href="https://enterthegungeon.wiki.gg/">Enter the Gungeon Wiki</a> and are used under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.
+                  </span>
+                  <span>
+                    © {year} All rights reserved.
+                  </span>
+                </div>
+              </div>
+            </div>
           </SearchProvider>
         </CategoriesProvider>
       </body>

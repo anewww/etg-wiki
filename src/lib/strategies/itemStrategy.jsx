@@ -8,7 +8,7 @@ import Image from "next/image";
 export default function ItemStrategy(item) {
   return (
     <>
-      <div
+      {/* <div
         className={styles.header}
       >
         <div className={styles.icons}>
@@ -49,7 +49,7 @@ export default function ItemStrategy(item) {
       </div>
       <div className={styles.description}>
         <p>{item.effect}</p>
-      </div>
+      </div> */}
     </>
   )
 }

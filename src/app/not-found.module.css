@@ -1,0 +1,15 @@
+.notFound {
+  font-size: var(--fontSize-jumbo);
+  margin: 16rem auto;
+  text-align: center;
+
+  /* & span:last-child {
+    display: block;
+    margin-top: 5rem;
+    font-size: var(--fontSize-base);
+  } */
+/* 
+  a {
+    text-decoration: underline;
+  } */
+}

@@ -26,12 +26,13 @@
 
 .main {
   grid-area: main;
+  margin-bottom: 8rem;
 }
 
 .filter {
   grid-column: 1 / -1;
   position: sticky;
-  top: 0rem;
+  top: 0.5rem;
   grid-area: filter; 
   align-self: start;
   display: flex;

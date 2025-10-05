@@ -44,9 +44,10 @@ function infoProps(info) {
 export default function GunStrategy(gun) {
   return (
     <>
-      <div
+      {/* <div
         className={styles.header}
       >
+        123
         <div className={styles.icons}>
           ID: {gun.id}
           <Image
@@ -67,7 +68,6 @@ export default function GunStrategy(gun) {
           width={scale * gun.icon.width}
           height={scale * gun.icon.height}
           unoptimized
-          // className={styles.sprite}
           alt={gun.name}
           src={gun.icon.src}
           decoding="async"
@@ -85,7 +85,6 @@ export default function GunStrategy(gun) {
       <div className={styles.description}>
         <p>{gun.notes}</p>
         <br></br>
-        {/* <EntityStats gun={modal.gun} /> */}
         {order.map((line, ind) => {
           const cname = statNames[line].cname;
           return (
@@ -108,7 +107,7 @@ export default function GunStrategy(gun) {
             </p>
           )
         })}
-      </div>
+      </div> */}
     </>
   )
 }

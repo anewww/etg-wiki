@@ -79,7 +79,7 @@ function DescriptionHeader({ entity, strategies }) {
   return (
     <>
        {strategies[entityName]
-        ? strategies[entityName].render(entity)
+          ? strategies[entityName].render(entity)
           : <p>No strategy found for {entityName}</p>}
 
       {/* <div className={styles.header}>
