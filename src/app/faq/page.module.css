@@ -1,0 +1,12 @@
+.questions {
+  text-align: left;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  padding: 5rem 3rem;
+  background-color: var(--color-bg-neutral);
+  border-radius: var(--borderRadius);
+
+  & h2 {
+    margin-bottom: 1rem;
+  }
+}

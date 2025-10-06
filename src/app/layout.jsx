@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
                 </Link>
                 <nav className={`${styles.nav} ${styles.right}`}>
                   <ul>
-                    <li><Link href="/faq">FAQ</Link></li>
+                    {/* <li><Link href="/faq">FAQ</Link></li> */}
                     <li><Link href="/about">About</Link></li>
                     <li><Link href="/contact">Contact</Link></li>
                   </ul>
@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
                 <div className={`${styles.nav} ${styles.links}`}>
                   <ul>
                     <li><Link href="/">Home</Link></li>
-                    <li><Link href="/faq">FAQ</Link></li>
+                    {/* <li><Link href="/faq">FAQ</Link></li> */}
                     <li><Link href="/about">About</Link></li>
                     <li><Link href="/contact">Contact</Link></li>
                   </ul>
