@@ -14,7 +14,7 @@ export default function ContactPage() {
         <h2>GitHub</h2>
         You may view and share this project on GitHub with attribution under the <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> license ⇩
         <br />
-        <a href="#">Source code</a>
+        <a href="https://github.com/anewww/etg-wiki/">Source code</a>
       </div>
     </div>
   );
