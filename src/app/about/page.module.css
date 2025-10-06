@@ -9,4 +9,15 @@
   & h2 {
     margin-bottom: 1rem;
   }
+
+  & li {
+    list-style:disc;
+    margin-left: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .questions {
+    padding: 5rem 1.5rem;
+  }
 }
