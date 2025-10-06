@@ -9,6 +9,7 @@ import "./globals.css";
 import { CategoriesProvider } from "@/src/contexts/categoriesContext"
 import Link from "next/link";
 import CookieBanner from "@/src/ui/cookieBanner"
+import Header from "@/src/ui/header"
 
 const silkscreen = Silkscreen({
   variable: "--font-silkscreen",
@@ -30,9 +31,9 @@ export default function RootLayout({ children }) {
         <CategoriesProvider>
           <SearchProvider>
             <div className={baseContainer.baseContainer}>
-              <header className={`${styles.header}`}>
+              <Header>
                 {/* <span className={`${styles.left} ${styles.circle}`} /> */}
-                <Link href="/">
+                <Link href="/" className={`${styles.left}`}>
                   <img src="/icons/logo-etg.svg" className={`${styles.logo} ${styles.left}`}></img>
                 </Link>
                 <nav className={`${styles.nav} ${styles.right}`}>
@@ -44,7 +45,8 @@ export default function RootLayout({ children }) {
                 </nav>
                 {/* <Search className={styles.right} /> */}
                 {/* <div className={`${styles.right}`}>Settings</div> */}
-              </header>
+                {/* <BurgerMenu /> */}
+              </Header>
             </div>
             {children}
             <div className={baseContainer.baseContainer}>

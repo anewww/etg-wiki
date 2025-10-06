@@ -1,0 +1,59 @@
+.underlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  display: flex;
+  justify-content: end;
+}
+
+.burger {
+  width: 50%;
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--color-bg-neutral);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.button {
+  all: unset;
+  align-self: flex-end;
+}
+
+.iconOpen {
+  background-color: transparent;
+  color: var(--text);
+  width: 50px;
+  height: auto;
+}
+
+.iconClose {
+  /* background-color: var(--color-bg-dark); */
+  background-color: transparent;
+  color: var(--text);
+  width: 50px;
+  height: auto;
+  /* border-radius: var(--borderRadius); */
+  /* pointer-events: none; */
+
+  /* &:hover {
+    all: unset;
+  } */
+}
+
+/* .nav {
+  display: block;
+} */
+
+.nav ul {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  text-align: center;
+  gap: 1rem;
+  font-size: var(--fontSize-xxl);
+}

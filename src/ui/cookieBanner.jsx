@@ -14,10 +14,7 @@ export default function CookieBanner() {
   }
 
   const refresh = () => {
-    // Cookies.set('cookie_consent', 'false', { expires: 365 });
-    // console.log(Cookies.get('cookie_consent'))
     if (Cookies.get('cookie_consent')) Cookies.remove('cookie_consent');
-    // console.log(Cookies.get('cookie_consent'))
   }
 
   useEffect(() => {

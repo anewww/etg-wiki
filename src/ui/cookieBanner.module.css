@@ -4,6 +4,7 @@
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--color-bg-neutral);
+  min-width: 320px;
   padding: 2rem;
   border-radius: var(--borderRadius);
   border: 2px solid var(--color-bg-light);
