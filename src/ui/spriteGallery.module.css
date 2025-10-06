@@ -51,6 +51,7 @@
   border-radius: var(--borderRadius);
   overflow: auto;
   width: 30%;
+  min-width: 320px;
   /* height: 80%; */
   max-width: 40%;
   max-height: 80%;
